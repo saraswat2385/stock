@@ -1,5 +1,5 @@
 FROM openjdk:8-jre-alpine
-COPY /build/libs/stock-1.0.0.jar /opt/
-ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "/opt/stock-1.0.0.jar"]
+ARG JAR_FILE
+COPY ${JAR_FILE} /opt/stock.jar
+ENTRYPOINT ["java", "-jar", "/opt/stock.jar"]
 EXPOSE 8080
