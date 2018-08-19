@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Compile') {
             steps {
                 sh './gradlew clean build -x test'
             }
@@ -12,9 +12,14 @@ pipeline {
                 sh './gradlew test'
             }
         }
-        stage('Deploy') {
+        stage('Build') {
             steps {
-                echo 'Deploying....'
+                sh './gradlew docker'
+            }
+        }
+        stage('Publish') {
+            steps {
+                sh './gradlew dockerPush'
             }
         }
     }
