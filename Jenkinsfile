@@ -4,22 +4,22 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                bat 'gradlew clean build -x test'
+                sh 'gradlew clean build -x test'
             }
         }
         stage('Test') {
             steps {
-                bat 'gradlew test'
+                sh 'gradlew test'
             }
         }
         stage('Build') {
             steps {
-                bat 'gradlew docker'
+                sh 'gradlew docker'
             }
         }
         stage('Publish') {
             steps {
-                bat 'gradlew dockerPush'
+                sh 'gradlew dockerPush'
             }
         }
     }
